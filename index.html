@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Mantém a página fora do Google. Para ser encontrável, apague esta linha. -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>Acervo de camisas do Bruno</title>
+<meta name="description" content="Catálogo pessoal de camisas de futebol oficiais.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Newsreader:opsz,wght@6..72,400..500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ CONFIGURAÇÃO VISUAL ═══ */
+:root{
+  --paper:#D7DAD6;
+  --plate:#FFFFFF;
+  --ink:#14191A;
+  --ink-soft:#6B736E;
+  --pine:#1F4D3D;
+  --line:rgba(20,25,26,.16);
+  --line-strong:rgba(20,25,26,.38);
+  --gap:clamp(14px,2.4vw,26px);
+  --pad:clamp(16px,4vw,48px);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif;
+  font-variation-settings:"wdth" 100;
+  font-size:16px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--pine);outline-offset:3px}
+
+/* ═══ CABEÇALHO ═══ */
+.top{
+  padding:calc(var(--pad) * 1.1) var(--pad) 0;
+  max-width:1680px;
+  margin:0 auto;
+}
+.wordmark{
+  font-variation-settings:"wdth" 122,"wght" 780;
+  font-size:clamp(2.1rem,7.4vw,5.4rem);
+  line-height:.92;
+  letter-spacing:-.025em;
+  margin:0;
+  max-width:14ch;
+}
+.standfirst{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(1rem,1.6vw,1.18rem);
+  line-height:1.5;
+  color:var(--ink-soft);
+  max-width:46ch;
+  margin:1.1rem 0 0;
+}
+.tally{
+  font-variation-settings:"wdth" 108,"wght" 560;
+  font-size:.92rem;
+  color:var(--pine);
+  margin:1.5rem 0 0;
+}
+
+/* ═══ CONTROLES ═══ */
+.controls{
+  max-width:1680px;
+  margin:0 auto;
+  padding:clamp(20px,3vw,34px) var(--pad) 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 28px;
+  align-items:flex-end;
+  border-bottom:1px solid var(--line);
+  padding-bottom:clamp(18px,2.4vw,26px);
+}
+.field{display:flex;flex-direction:column;gap:6px}
+.field > span{
+  font-size:.78rem;
+  font-variation-settings:"wdth" 104,"wght" 560;
+  color:var(--ink-soft);
+}
+.field input,.field select{
+  font:inherit;
+  font-size:.95rem;
+  background:var(--plate);
+  color:var(--ink);
+  border:1px solid var(--line-strong);
+  border-radius:2px;
+  padding:9px 11px;
+  min-width:15rem;
+}
+.field input::placeholder{color:var(--ink-soft)}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;flex:1 1 100%}
+.chip{
+  font-size:.86rem;
+  font-variation-settings:"wdth" 104,"wght" 520;
+  padding:5px 12px;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  color:var(--ink-soft);
+}
+.chip[aria-pressed="true"]{
+  background:var(--pine);
+  border-color:var(--pine);
+  color:var(--paper);
+}
+
+/* ═══ GRADE ═══ */
+.grid{
+  max-width:1680px;
+  margin:0 auto;
+  padding:clamp(24px,3.4vw,42px) var(--pad) clamp(60px,9vw,120px);
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:calc(var(--gap) * 1.7) var(--gap);
+}
+.slot{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  text-align:left;
+  width:100%;
+}
+.plate{
+  position:relative;
+  aspect-ratio:4/5;
+  background:var(--plate);
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.plate img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.slot:hover .plate,.slot:focus-visible .plate{border-color:var(--line-strong)}
+
+/* casa vazia do álbum */
+.plate.empty{
+  background:transparent;
+  border:1px dashed var(--line-strong);
+  display:grid;
+  place-content:center;
+  gap:4px;
+  padding:14px;
+  text-align:center;
+}
+.plate.empty .num{
+  font-variation-settings:"wdth" 118,"wght" 760;
+  font-size:clamp(2.2rem,4.4vw,3.1rem);
+  line-height:1;
+  color:var(--line-strong);
+}
+.plate.empty .await{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:.84rem;
+  color:var(--ink-soft);
+}
+
+.cat-no{
+  font-variation-settings:"wdth" 104,"wght" 560;
+  font-size:.76rem;
+  color:var(--ink-soft);
+}
+.club{
+  font-variation-settings:"wdth" 112,"wght" 660;
+  font-size:1.02rem;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  margin:0;
+}
+.kit{
+  font-size:.88rem;
+  line-height:1.35;
+  color:var(--ink);
+  margin:0;
+}
+.maker{
+  font-size:.84rem;
+  color:var(--ink-soft);
+  margin:0;
+}
+
+/* ═══ ESTADOS ═══ */
+.state{
+  max-width:1680px;
+  margin:0 auto;
+  padding:clamp(48px,9vw,110px) var(--pad);
+}
+.state p{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:1.08rem;
+  line-height:1.55;
+  color:var(--ink-soft);
+  max-width:56ch;
+  margin:0;
+}
+.state code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.86em;
+  background:var(--plate);
+  padding:1px 5px;
+  border:1px solid var(--line);
+}
+.state[hidden]{display:none}
+
+/* ═══ DETALHE ═══ */
+.sheet[hidden]{display:none}
+.sheet{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:rgba(20,25,26,.62);
+  display:grid;
+  place-items:center;
+  padding:var(--pad);
+}
+.sheet-inner{
+  background:var(--paper);
+  border:1px solid var(--line-strong);
+  max-width:1020px;
+  width:100%;
+  max-height:100%;
+  overflow:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+}
+.sheet-inner.textonly{grid-template-columns:1fr;max-width:580px}
+.sheet-inner.textonly .sheet-img{display:none}
+.sheet-img{background:var(--plate);display:grid;place-items:center;min-height:240px}
+.sheet-img img{width:100%;height:100%;object-fit:cover}
+.sheet-body{padding:clamp(22px,3.4vw,40px);display:flex;flex-direction:column;gap:1.1rem}
+.sheet-body h2{
+  font-variation-settings:"wdth" 118,"wght" 740;
+  font-size:clamp(1.5rem,3vw,2.1rem);
+  line-height:1.05;
+  letter-spacing:-.02em;
+  margin:0;
+}
+.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-size:.92rem}
+.facts dt{color:var(--ink-soft)}
+.facts dd{margin:0}
+.note{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:1.06rem;
+  line-height:1.6;
+  margin:0;
+  padding-top:1rem;
+  border-top:1px solid var(--line);
+  max-width:60ch;
+}
+.close{
+  align-self:flex-start;
+  margin-top:auto;
+  font-size:.9rem;
+  font-variation-settings:"wdth" 104,"wght" 560;
+  color:var(--pine);
+  border-bottom:1px solid currentColor;
+  padding-bottom:1px;
+}
+
+/* ═══ RODAPÉ ═══ */
+.foot{
+  border-top:1px solid var(--line);
+  max-width:1680px;
+  margin:0 auto;
+  padding:clamp(22px,3vw,34px) var(--pad) clamp(40px,6vw,70px);
+}
+.foot p{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:.95rem;
+  color:var(--ink-soft);
+  max-width:58ch;
+  margin:0;
+}
+
+/* ═══ ENTRADA ═══ */
+@media (prefers-reduced-motion:no-preference){
+  .grid.enter .slot{animation:rise .5s cubic-bezier(.2,.7,.3,1) backwards}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}}
+}
+
+@media (max-width:720px){
+  .sheet-inner{grid-template-columns:1fr}
+  .sheet-img{aspect-ratio:4/5}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .field input,.field select{min-width:0;width:100%}
+  .field{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1 class="wordmark">Acervo de camisas do Bruno</h1>
+  <p class="standfirst">Camisas oficiais de clubes e seleções, guardadas para vestir. Cada peça tem seu número de catálogo, seu uniforme e sua temporada.</p>
+  <p class="tally" id="tally"></p>
+</header>
+
+<div class="controls" id="controls" hidden>
+  <label class="field">
+    <span>Buscar</span>
+    <input type="search" id="q" placeholder="clube, temporada, fornecedor" autocomplete="off">
+  </label>
+  <label class="field">
+    <span>Ordenar</span>
+    <select id="sort">
+      <option value="club">Clube, A–Z</option>
+      <option value="season">Temporada, mais recente</option>
+      <option value="id">Ordem de entrada no acervo</option>
+    </select>
+  </label>
+  <div class="chips" id="chips" role="group" aria-label="Filtrar por fornecedor"></div>
+</div>
+
+<div class="state" id="state"><p id="state-text">Carregando o acervo.</p></div>
+
+<main class="grid" id="grid" hidden></main>
+
+<footer class="foot">
+  <p>Coleção pessoal. As peças não estão à venda e a página não tem fins comerciais.</p>
+</footer>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet-inner">
+    <div class="sheet-img" id="sheet-img"></div>
+    <div class="sheet-body">
+      <h2 id="sheet-title"></h2>
+      <dl class="facts" id="sheet-facts"></dl>
+      <p class="note" id="sheet-note" hidden></p>
+      <button class="close" id="close">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   1. COLE AQUI o endereço CSV da aba Catálogo publicada.
+      Planilha → Arquivo → Compartilhar → Publicar na web
+      → aba "Catálogo" → "Valores separados por vírgula (.csv)"
+   ══════════════════════════════════════════════════════ */
+const FEED = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAEweY7pT7fizEnH-kNU6t-YXjCFDpGeB54ujKzCCsOzl-bJ3kBDpRwL61dkp6Mi37wThBiL1VJm0d/pub?gid=749091277&single=true&output=csv";
+
+/* As fotos ficam em img/ com o nome igual ao ID: img/CAM-029.jpg */
+const PHOTO = id => `img/${id}.jpg`;
+
+/* ---------- leitura do CSV ---------- */
+function parseCSV(text){
+  const rows = []; let row = [], cell = "", quoted = false;
+  for (let i = 0; i < text.length; i++){
+    const c = text[i];
+    if (quoted){
+      if (c === '"'){ if (text[i+1] === '"'){ cell += '"'; i++; } else quoted = false; }
+      else cell += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ','){ row.push(cell); cell = ""; }
+    else if (c === '\n'){ row.push(cell); rows.push(row); row = []; cell = ""; }
+    else if (c !== '\r') cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows;
+}
+
+/* "Clube — Uniforme (n) Temporada — Fornecedor — Versão — Tamanho" */
+function parseItem(s){
+  const p = String(s).split(" — ").map(x => x.trim());
+  const nd = v => (!v || /^(vers[ãa]o |fornecedor |tamanho |uniforme )?n\/d$/i.test(v)) ? "" : v;
+  const kit = nd(p[1]);
+  const years = kit.match(/\d{4}/g);
+  return {
+    club: p[0] || "Sem identificação",
+    kit,
+    maker: nd(p[2]),
+    version: nd(p[3]),
+    size: nd(p[4]),
+    year: years ? Math.max(...years.map(Number)) : 0
+  };
+}
+
+let ALL = [], maker = "todos";
+
+/* ---------- desenho ---------- */
+function visible(){
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const sort = document.getElementById("sort").value;
+  let out = ALL.filter(s =>
+    (maker === "todos" || s.maker === maker) &&
+    (!q || s.haystack.includes(q))
+  );
+  const by = {
+    club:   (a,b) => a.club.localeCompare(b.club,"pt-BR") || b.year - a.year,
+    season: (a,b) => b.year - a.year || a.club.localeCompare(b.club,"pt-BR"),
+    id:     (a,b) => a.id.localeCompare(b.id)
+  };
+  return out.sort(by[sort]);
+}
+
+function draw(firstRun){
+  const grid = document.getElementById("grid");
+  const list = visible();
+  grid.innerHTML = "";
+  grid.hidden = false;
+
+  document.getElementById("tally").textContent =
+    list.length === ALL.length
+      ? `${ALL.length} ${ALL.length === 1 ? "peça" : "peças"} no acervo`
+      : `${list.length} de ${ALL.length} peças`;
+
+  document.getElementById("state").hidden = list.length > 0;
+  if (!list.length) say("Nenhuma camisa com esse filtro.");
+
+  list.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.className = "slot";
+    b.style.animationDelay = firstRun ? `${Math.min(i, 18) * 28}ms` : "0ms";
+    b.innerHTML = `
+      <div class="plate${s.photo ? "" : " empty"}">
+        ${s.photo
+          ? `<img src="${PHOTO(s.id)}" alt="Camisa ${esc(s.club)}" loading="lazy">`
+          : `<span class="num">${esc(s.num)}</span><span class="await">foto a caminho</span>`}
+      </div>
+      <span class="cat-no">${esc(s.id)}</span>
+      <p class="club">${esc(s.club)}</p>
+      <p class="kit">${esc(s.kit)}</p>
+      ${s.maker ? `<p class="maker">${esc(s.maker)}</p>` : ""}`;
+    b.addEventListener("click", () => open(s));
+    grid.appendChild(b);
+  });
+
+  if (firstRun){ grid.classList.add("enter"); setTimeout(() => grid.classList.remove("enter"), 1400); }
+}
+
+const say = html => { document.getElementById("state-text").innerHTML = html; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- detalhe ---------- */
+let lastFocus = null;
+function open(s){
+  lastFocus = document.activeElement;
+  document.getElementById("sheet-title").textContent = s.club;
+  document.querySelector(".sheet-inner").classList.toggle("textonly", !s.photo);
+  document.getElementById("sheet-img").innerHTML = s.photo
+    ? `<img src="${PHOTO(s.id)}" alt="Camisa ${esc(s.club)}">`
+    : "";
+
+  const facts = [
+    ["Uniforme", s.kit],
+    ["Fornecedor", s.maker],
+    ["Versão", s.version],
+    ["Catálogo", s.id]
+  ].filter(f => f[1]);
+  document.getElementById("sheet-facts").innerHTML =
+    facts.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+
+  const note = document.getElementById("sheet-note");
+  note.hidden = !s.note;
+  note.textContent = s.note;
+
+  document.getElementById("sheet").hidden = false;
+  document.getElementById("close").focus();
+}
+function shut(){
+  document.getElementById("sheet").hidden = true;
+  if (lastFocus) lastFocus.focus();
+}
+document.getElementById("close").addEventListener("click", shut);
+document.getElementById("sheet").addEventListener("click", e => { if (e.target.id === "sheet") shut(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") shut(); });
+
+/* ---------- carga ---------- */
+async function load(){
+  if (FEED.startsWith("COLE_AQUI")){
+    say('Falta o endereço do feed. Publique a aba <code>Catálogo</code> da planilha como CSV e cole o endereço na constante <code>FEED</code>, no topo do script.');
+    return;
+  }
+
+  let rows;
+  try {
+    const r = await fetch(FEED, {cache:"no-store"});
+    if (!r.ok) throw new Error(r.status);
+    rows = parseCSV(await r.text());
+  } catch (err) {
+    say('Não foi possível ler a planilha. Confira se a aba <code>Catálogo</code> continua publicada na web e se o endereço em <code>FEED</code> está correto.');
+    return;
+  }
+
+  ALL = rows.slice(1)
+    .filter(r => r[0] && r[0].trim())
+    .map(r => {
+      const id = r[0].trim();
+      const p = parseItem(r[1] || "");
+      return {
+        id,
+        num: (id.match(/\d+/) || ["?"])[0],
+        note: (r[2] || "").trim(),
+        photo: false,
+        ...p,
+        haystack: [id, r[1], r[2]].join(" ").toLowerCase()
+      };
+    });
+
+  if (!ALL.length){
+    say('Nenhuma peça marcada para publicar. Na aba Compras, mude a coluna “Publicar no catálogo” para “sim” nas peças que devem aparecer aqui.');
+    return;
+  }
+
+  // Descobre quais fotos existem antes de desenhar, para não deixar imagem quebrada.
+  await Promise.all(ALL.map(s => new Promise(done => {
+    const im = new Image();
+    im.onload  = () => { s.photo = true;  done(); };
+    im.onerror = () => { s.photo = false; done(); };
+    im.src = PHOTO(s.id);
+  })));
+
+  const makers = [...new Set(ALL.map(s => s.maker).filter(Boolean))].sort((a,b) => a.localeCompare(b,"pt-BR"));
+  const chips = document.getElementById("chips");
+  ["todos", ...makers].forEach(m => {
+    const c = document.createElement("button");
+    c.className = "chip";
+    c.type = "button";
+    c.textContent = m;
+    c.setAttribute("aria-pressed", String(m === "todos"));
+    c.addEventListener("click", () => {
+      maker = m;
+      [...chips.children].forEach(x => x.setAttribute("aria-pressed", String(x === c)));
+      draw(false);
+    });
+    chips.appendChild(c);
+  });
+
+  document.getElementById("controls").hidden = makers.length < 2 && ALL.length < 6;
+  document.getElementById("q").addEventListener("input", () => draw(false));
+  document.getElementById("sort").addEventListener("change", () => draw(false));
+  draw(true);
+}
+load();
+</script>
+</body>
+</html>
